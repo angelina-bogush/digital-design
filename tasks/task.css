@@ -1,0 +1,9 @@
+@import url('../navigation/nav.css');
+@import url('../projects/project.css');
+.task:hover .menu{
+display: block
+}
+.task__user-avatar{
+    width: 24px;
+    height: 24px;
+}
