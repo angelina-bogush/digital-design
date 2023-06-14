@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./task.css">
 </head>
 <body>
@@ -12,19 +15,19 @@
         <article class="task item">
             <div class="task__content content">
                 <div class="task__description-container">
-            <p class="task__title title">Название</p>
-            <img src="../images/navigation/nav-user-avatar.svg" alt="" class="user-avatar task__user-avatar">
-            </div>
-            <div class="task__description description">
-                <div class="task__description-creation description-creation">
-                    <p class="task__number number">#1</p>
-                    <p class="task__creator creator">Описание создания проекта </p>
-                    <p class="status task__status">Черновик</p>
+                    <p class="task__title title">Название</p>
+                    <img src="../images/navigation/nav-user-avatar.svg" alt="Аватар пользователя" class="user-avatar task__user-avatar">
                 </div>
-                <p class="task__description-changes description-changes">Здесь описание изменений</p>
+                <div class="task__description description">
+                    <div class="task__description-creation description-creation">
+                        <p class="task__number number">#1</p>
+                        <p class="task__creator creator">Описание создания проекта </p>
+                        <p class="status task__status">Черновик</p>
+                    </div>
+                    <p class="task__description-changes description-changes">Здесь описание изменений</p>
+                </div>
             </div>
-        </div>
-        <button class="task__menu menu"></button>
+            <button class="task__menu menu"></button>
     </div>
 </body>
 </html>
