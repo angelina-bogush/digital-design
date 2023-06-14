@@ -5,8 +5,6 @@ padding: var(--gap);
 /* height: 100%;  */
 }
 .page{
-    /* width:100%;
-    height: 100vh; */
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -14,7 +12,6 @@ padding: var(--gap);
     align-items: center;
     row-gap: 10px;
     padding:280px 0;
-    /* aspect-ratio: 488/315; */
 }
 .page__text{
     font-size: var(--regular-font-size);
@@ -23,4 +20,14 @@ padding: var(--gap);
     background-color: var(--primary-default-color);
     height: 42px;
     width:98px;
+}
+.page__button:hover{
+background-color: var(--primary-hover-color);
+}
+.page__button:active{
+    background-color: var(--primary-active-color);
+}
+.page__button:disabled{
+    background-color: var(--primary-disabled-color);
+    color: var(--disabled-font-button);
 }

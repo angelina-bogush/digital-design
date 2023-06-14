@@ -4,6 +4,10 @@
 }
 :root{
     --primary-default-color:  #1F75CB;
+    --primary-hover-color: #1068BF;
+    --primary-active-color:#0B5CAD;
+    --primary-disabled-color: #DCDCDE;
+    --disabled-font-button: #8E8E8E;
     --hover-button-color: #ECECEF;
     --color-black: #1C1C1C;
     --regular-font-size: 14px;
