@@ -7,3 +7,15 @@ display: block
     width: 24px;
     height: 24px;
 }
+.task__description-container{
+    display: flex;
+    justify-content: space-between;
+}
+.status{
+    background-color: var(--color-bronze);
+    color: var(--color-white);
+    font-style: normal;
+    line-height: var(--regular-line-height);
+    padding: 0 8px;
+    border-radius: 4px;
+}
