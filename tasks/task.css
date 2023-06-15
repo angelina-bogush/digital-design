@@ -1,5 +1,8 @@
 @import url('../navigation/nav.css');
 @import url('../projects/project.css');
+.task__title{
+    padding-top: 0;
+}
 .task:hover .menu{
 display: block
 }
@@ -10,6 +13,7 @@ display: block
 .task__description-container{
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
 }
 .status{
     background-color: var(--color-bronze);
