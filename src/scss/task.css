@@ -1,5 +1,5 @@
-@import url('../navigation/nav.css');
-@import url('../projects/project.css');
+@import url('./nav.css');
+@import url('./project.css');
 .task__title{
     padding-top: 0;
 }

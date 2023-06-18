@@ -8,55 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./empty-projects.css">
 </head>
 <body>
-    <div class="navigation">
-        <div class="navigation__container">
-            <button class="button navigation__button">Проекты</button>
-            <button class="button navigation__button">Задачи</button>
-            <button class="button navigation__button">Пользователи</button>
-            <div class="navigation__user">
-                <div class="navigation__user-container">
-                <img src="../images/navigation/nav-user-avatar.svg" alt="" class="user-avatar navigation__user-avatar">
-                <button class="navigation__user-button"></button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="project-container main-container">
-        <article class="project item">
-            <div class="project__content content">
-            <p class="project__title title">Название</p>
-            <div class="project__description description">
-                <div class="project__description-creation description-creation">
-                    <p class="project__number number">#1</p>
-                    <p class="project__creator creator">Описание создания проекта </p>
-                </div>
-                <p class="project__description-changes description-changes">Здесь описание изменений</p>
-            </div>
-        </div>
-        <button class="project__menu menu"></button> 
-        </article>
-        <article class="project item">
-            <div class="project__content content">
-            <p class="project__title title">Название</p>
-            <div class="project__description description">
-                <div class="project__description-creation description-creation">
-                    <p class="project__number number">#1</p>
-                    <p class="project__creator creator">Описание создания проекта </p>
-                </div>
-                <p class="project__description-changes description-changes">Здесь описание изменений</p>
-            </div>
-        </div>
-        <button class="project__menu menu"></button> 
-        </article>
-    </div>
-    <div class="container">
-        <div class="page">
-           <p class="page__text">Не создан ни один проект</p>
-           <button class="button page__button">Добавить</button>
-        </div>
-    </div>
+    <div id="app">
+     <div class="project-container main-container"></div>
+     <div class="task-container main-container"></div>
+     <div class="empty-projects-container"></div>
+ <svg display="none">
+    <symbol id="user-button" viewBox="0 0 14 8">
+        <path d="M6.99999 4.95L2.04999 0L0.635986 1.414L6.99999 7.778L13.364 1.414L11.95 0L6.99999 4.95Z" fill="white"/>
+    </symbol>
+ </svg>
+</div>
 </body>
 </html>

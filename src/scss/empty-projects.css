@@ -1,6 +1,12 @@
-@import url('../navigation/nav.css');
+@import url('./nav.css'); 
 body{
     height: 100vh;
+}
+#app{
+    height: 100%
+}
+.empty-projects-container{
+    height: 100%
 }
 .container {
     padding: var(--gap);
@@ -16,20 +22,18 @@ body{
     align-items: center;
     row-gap: 10px;
     height: 100%;
-}
+} 
 
-.page__text {
+ .page__text {
     font-size: var(--regular-font-size);
 }
 
-.page__button {
-    background-color: var(--primary-default-color);
+.page__button  {
     height: 42px;
     width: 98px;
-    color: var(--color-white)
-}
+} 
 
-.page__button:hover {
+ .page__button:hover {
     background-color: var(--primary-hover-color);
     color: var(--color-white)
 }
