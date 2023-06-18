@@ -34,7 +34,7 @@ body {
     padding: 0 var(--gap);
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .navigation__container {
@@ -75,7 +75,7 @@ body {
 }
 
 .navigation__user-button {
-    background-image: url('../images/navigation/nav-user-button.svg');
+    background-image: url('../../images/navigation/nav-user-button.svg');
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: 50%;

@@ -24,7 +24,7 @@
     height: 42px;
     background-color: var(--color-white);
     align-self: center;
-    background-image: url('../images/project/project-menu.svg');
+    background-image: url('../../images/project/project-menu.svg');
     background-repeat: no-repeat;
     background-position: 50%;
     display: none;
