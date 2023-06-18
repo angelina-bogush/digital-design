@@ -32,10 +32,29 @@ import { data } from "./data.js";
             <span class="user-avatar navigation__user-avatar"></span>
             <svg class="navigation__user-button"><use xlink:href="#user-button"></use>
             </svg>
-            
+            <div class="dropdown">
+                    <ul class="dropdown__list">
+                        <li><a class="dropdown__link">Профиль</a></li>
+                        <li><a class="dropdown__link">Выход</a></li>
+                    </ul>
+                </div>
         </div>
     </div>
 </div>`
+};
+export function toggleButton(event){
+    if(event.target.classList.contains('button')){
+const activeButton = document.querySelector('.button_is_active');
+  if (activeButton && activeButton !== event.target) {
+    activeButton.classList.remove('button_is_active');
+  }
+event.target.classList.add('button_is_active')}
+}
+export function toggleMenu(event){
+    if(event.target.classList.contains('navigation__user-container')){
+        const menuList = document.querySelector('.dropdown');
+        menuList.classList.toggle('dropdown_is_opened')
+    }
 }
 
 

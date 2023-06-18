@@ -11,6 +11,8 @@ export function createProject(data){
         <p class="project__description-changes description-changes">${data.projects['1']['changes']}</p>
     </div>
 </div>
-<button class="project__menu menu"></button> 
+<button class="project__menu menu">
+    <svg class="menu-image"><use xlink:href="#menu"></use></svg>
+    </button> 
 </article>`
 }

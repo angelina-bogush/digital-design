@@ -2,7 +2,7 @@ import '../scss/nav.css';
 import '../scss/project.css';
 import '../scss/task.css';
 import '../scss/empty-projects.css';
-import { createNav } from './nav'
+import { createNav, toggleButton, toggleMenu } from './nav'
 import { data } from './data'
 import { createElement } from './utils'
 import { createProject } from './project'
@@ -17,8 +17,16 @@ createElement(createNav(data), container);
 createElement(createProject(data), projectContainer);
 createElement(createProject(data), projectContainer);
 createElement(createTask(data), taskContainer);
-createElement(createEmptyProjects(), emptyProjectsContainer)
-
+createElement(createEmptyProjects(), emptyProjectsContainer);
+document.addEventListener('click', (event) => {
+console.log(event.target)
+})
+// const buttonNav = document.querySelector('.navigation__button');
+// console.log(buttonNav)
+document.addEventListener('click', (event) => {
+    toggleButton(event);
+    toggleMenu(event)
+     })
 
 
 
