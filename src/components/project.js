@@ -11,8 +11,24 @@ export function createProject(data){
         <p class="project__description-changes description-changes">${data.projects['1']['changes']}</p>
     </div>
 </div>
-<button class="project__menu menu">
+<button class="project__menu menu" data-dropdown="menu-1">
     <svg class="menu-image"><use xlink:href="#menu"></use></svg>
+    <div class="project-dropdown" id='menu-1'>
+                    <ul class="dropdown__list">
+                        <li><a class="dropdown__link project-dropdown__link">Редактировать</a></li>
+                        <li><a class="dropdown__link project-dropdown__link"><span>Удалить</span></a></li>
+                    </ul>
+    </div>
     </button> 
 </article>`
 }
+export function toggleMenuProject(event){
+    if(event.target.classList.contains('project__menu') || event.target.parentNode.classList.contains('project__menu')){
+        const dropdown = document.querySelector('.project-dropdown');
+        const menuButton = event.target.closest('.menu');
+        menuButton.classList.toggle('menu_clicked');
+       dropdown.classList.toggle('dropdown_is_opened')
+       dropdown.addEventListener('mouseleave', function(){
+        dropdown.classList.remove('dropdown_is_opened');
+    })
+    }}

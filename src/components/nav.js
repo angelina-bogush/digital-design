@@ -32,12 +32,12 @@ import { data } from "./data.js";
             <span class="user-avatar navigation__user-avatar"></span>
             <svg class="navigation__user-button"><use xlink:href="#user-button"></use>
             </svg>
-            <div class="dropdown">
+            <div class="dropdown nav-dropdown">
                     <ul class="dropdown__list">
                         <li><a class="dropdown__link">Профиль</a></li>
                         <li><a class="dropdown__link">Выход</a></li>
                     </ul>
-                </div>
+                </div> </button>
         </div>
     </div>
 </div>`
@@ -50,11 +50,22 @@ const activeButton = document.querySelector('.button_is_active');
   }
 event.target.classList.add('button_is_active')}
 }
-export function toggleMenu(event){
-    if(event.target.classList.contains('navigation__user-container')){
+export function toggleMenuNav(event){
+    if(event.target.classList.contains('navigation__user') || event.target.classList.contains('navigation__user-container') || event.target.parentNode.classList.contains('navigation__user-container') || event.target.parentNode.classList.contains('navigation__user-button')){
+        const userMenu = document.querySelector('.navigation__user');
         const menuList = document.querySelector('.dropdown');
-        menuList.classList.toggle('dropdown_is_opened')
+        userMenu.classList.toggle('navigation__user_clicked');
+        menuList.classList.toggle('dropdown_is_opened');
+
     }
+}
+export function closeMenuNav(event){
+    const menuList = document.querySelector('.dropdown');
+if(!event.target.classList.contains('navigation__user') && !event.target.classList.contains('navigation__user-container') && !event.target.parentNode.classList.contains('navigation__user-container') && !event.target.parentNode.classList.contains('navigation__user-button')){
+    const userMenu = document.querySelector('.navigation__user');
+    menuList.classList.remove('dropdown_is_opened');
+    userMenu.classList.remove('navigation__user_clicked');
+}
 }
 
 

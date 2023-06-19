@@ -1,5 +1,5 @@
-@import url('./nav.css');
-@import url('./project.css');
+@import './nav.scss';
+@import './project.scss';
 .task__title{
     padding-top: 0;
 }
@@ -16,9 +16,9 @@ display: block
     padding-top: 10px;
 }
 .status{
-    background-color: var(--color-bronze);
-    color: var(--color-white);
-    line-height: var(--regular-line-height);
+    background-color: $color-bronze;
+    color: $color-white;
+    line-height: $regular-line-height;
     padding: 0 8px;
     border-radius: 4px;
 }

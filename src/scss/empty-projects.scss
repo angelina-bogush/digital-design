@@ -1,4 +1,4 @@
-@import url('./nav.css'); 
+@import './nav.scss'; 
 body{
     height: 100vh;
 }
@@ -9,7 +9,7 @@ body{
     height: 100%
 }
 .container {
-    padding: var(--gap);
+    padding: $gap;
     height: 100%
 }
 
@@ -25,25 +25,27 @@ body{
 } 
 
  .page__text {
-    font-size: var(--regular-font-size);
+    font-size: $regular-font-size;
 }
 
 .page__button  {
     height: 42px;
     width: 98px;
+    color: $color-white;
+    background-color: $primary-default-color;
 } 
 
  .page__button:hover {
-    background-color: var(--primary-hover-color);
-    color: var(--color-white)
+    background-color: $primary-hover-color;
+    color: $color-white
 }
 
 .page__button:active {
-    background-color: var(--primary-active-color);
-    color: var(--color-white)
+    background-color: $primary-active-color;
+    color: $color-white
 }
 
 .page__button:disabled {
-    background-color: var(--primary-disabled-color);
-    color: var(--disabled-font-button);
+    background-color: $primary-disabled-color;
+    color: $disabled-font-button;
 }

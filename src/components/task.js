@@ -15,8 +15,24 @@ export function createTask(data){
             <p class="task__description-changes description-changes">${data['tasks']['1']['changes']}</p>
         </div>
     </div>
-    <button class="task__menu menu">
+    <button class="task__menu menu" data-dropdown="menu-2">
     <svg class="menu-image"><use xlink:href="#menu"></use></svg>
+    <div class="project-dropdown task-dropdown" id='menu-2'>
+                    <ul class="dropdown__list">
+                        <li><a class="dropdown__link project-dropdown__link">Редактировать</a></li>
+                        <li><a class="dropdown__link project-dropdown__link"><span>Удалить</span></a></li>
+                    </ul>
+    </div>
     </button>
 </article>`
 }
+export function toggleMenuTask(event){
+    if(event.target.classList.contains('task__menu') || event.target.parentNode.classList.contains('task__menu')){
+        const dropdown = document.querySelector('.task-dropdown');
+        const menuButton = event.target.closest('.menu');
+        menuButton.classList.toggle('menu_clicked');
+       dropdown.classList.toggle('dropdown_is_opened')
+       dropdown.addEventListener('mouseleave', function(){
+        dropdown.classList.remove('dropdown_is_opened');
+    })
+    }}

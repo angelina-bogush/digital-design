@@ -35,13 +35,40 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
             test: /\.svg$/,
             loader: 'svg-sprite-loader',
         },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+      },
           {
             test: /\.css$/,
             use: [MiniCssExtractPlugin.loader, {
               loader: 'css-loader',
               options: { importLoaders: 1 },
             }, 'postcss-loader']
-          }
+          },
+          {
+            test: /\.scss$/i,
+            use: [ 
+                MiniCssExtractPlugin.loader, 
+                'css-loader', 
+                {
+                    loader: "postcss-loader",
+                    options: {
+                        postcssOptions: {
+                            plugins: [
+                                [
+                                    "autoprefixer",
+                                    {
+                                        "browsers": 'last 10 versions'
+                                    },
+                                ],
+                            ],
+                        },
+                    },
+                },
+                "sass-loader", 
+            ],
+        },
         ]
       },
       plugins: [
