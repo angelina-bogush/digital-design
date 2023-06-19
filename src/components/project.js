@@ -1,34 +1,40 @@
-import { data } from "./data";
-export function createProject(data){
-    return ` <article class="project item">
+
+export function createProject(data) {
+  return ` <article class="project item">
     <div class="project__content content">
-    <p class="project__title title">${data.projects['1']['name']}</p>
+    <p class="project__title title">${data.projects["1"]["name"]}</p>
     <div class="project__description description">
         <div class="project__description-creation description-creation">
-            <p class="project__number number">#${data.projects['1']['number']}</p>
-            <p class="project__creator creator">${data.projects['1']['creator']}</p>
+            <p class="project__number number">#${data.projects["1"]["number"]}</p>
+            <p class="project__creator creator">${data.projects["1"]["creator"]}</p>
         </div>
-        <p class="project__description-changes description-changes">${data.projects['1']['changes']}</p>
+        <p class="project__description-changes description-changes">${data.projects["1"]["changes"]}</p>
     </div>
 </div>
 <button class="project__menu menu" data-dropdown="menu-1">
-    <svg class="menu-image"><use xlink:href="#menu"></use></svg>
-    <div class="project-dropdown" id='menu-1'>
+    <svg class="menu-image"><use xlink:href="#project-menu"></use></svg>
+    <div class="project-dropdown">
                     <ul class="dropdown__list">
                         <li><a class="dropdown__link project-dropdown__link">Редактировать</a></li>
                         <li><a class="dropdown__link project-dropdown__link"><span>Удалить</span></a></li>
                     </ul>
     </div>
     </button> 
-</article>`
+</article>`;
 }
-export function toggleMenuProject(event){
-    if(event.target.classList.contains('project__menu') || event.target.parentNode.classList.contains('project__menu')){
-        const dropdown = document.querySelector('.project-dropdown');
-        const menuButton = event.target.closest('.menu');
-        menuButton.classList.toggle('menu_clicked');
-       dropdown.classList.toggle('dropdown_is_opened')
-       dropdown.addEventListener('mouseleave', function(){
-        dropdown.classList.remove('dropdown_is_opened');
-    })
-    }}
+export function closeMenuProject(event){
+  if(!event.target.classList.contains("project__menu") && !event.target.parentNode.classList.contains("project__menu")){
+    const dropdown = document.querySelector(".project-dropdown");
+    const menuButton = document.querySelector(".project__menu");
+    dropdown.classList.remove("dropdown_is_opened");
+    menuButton.classList.remove("menu_clicked");
+  }
+}
+export function toggleMenuProject(event) {
+  if ( event.target.classList.contains("project__menu") || event.target.parentNode.classList.contains("project__menu")) {
+    const dropdown = document.querySelector(".project-dropdown");
+    const menuButton = event.target.closest(".menu");
+    menuButton.classList.toggle("menu_clicked");
+    dropdown.classList.toggle("dropdown_is_opened")
+  }
+}

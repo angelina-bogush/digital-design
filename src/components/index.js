@@ -1,30 +1,33 @@
-import '../../fonts/font.scss'
-import '../scss/nav.scss';
-import '../scss/project.scss';
-import '../scss/task.scss';
-import '../scss/empty-projects.scss';
-import { createNav, toggleButton, toggleMenuNav, closeMenuNav } from './nav'
-import { data } from './data'
-import { createElement } from './utils'
-import { createProject, toggleMenuProject } from './project'
-import { createTask, toggleMenuTask} from './task'
-import {createEmptyProjects} from './empty-project'
+import "../../fonts/font.scss";
+import "../scss/nav.scss";
+import "../scss/project.scss";
+import "../scss/task.scss";
+import "../scss/empty-projects.scss";
+import "@/icons/nav.svg";
+import "@/icons/project-menu.svg";
+import { createNav, toggleButton, toggleMenuNav, closeMenuNav } from "./nav";
+import { data } from "./data";
+import { createElement } from "./utils";
+import { createProject, toggleMenuProject, closeMenuProject } from "./project";
+import { createTask, toggleMenuTask, closeMenuTask } from "./task";
+import { createEmptyProjects } from "./empty-project";
 
-const container = document.querySelector('#app');
-const projectContainer = document.querySelector('.project-container');
-const taskContainer = document.querySelector('.task-container');
-const emptyProjectsContainer = document.querySelector('.empty-projects-container');
+const container = document.querySelector("#app");
+const projectContainer = document.querySelector(".project-container");
+const taskContainer = document.querySelector(".task-container");
+const emptyProjectsContainer = document.querySelector(
+  ".empty-projects-container"
+);
 createElement(createNav(data), container);
 createElement(createProject(data), projectContainer);
 createElement(createTask(data), taskContainer);
 createElement(createEmptyProjects(), emptyProjectsContainer);
-document.addEventListener('click', (event) => {
-    toggleButton(event);
-    toggleMenuNav(event);
-    toggleMenuProject(event);
-    toggleMenuTask(event);
-    closeMenuNav(event)
-     })
-
-
-
+document.addEventListener("click", (event) => {
+  toggleButton(event);
+  toggleMenuNav(event);
+  toggleMenuProject(event);
+  toggleMenuTask(event);
+  closeMenuNav(event);
+  closeMenuProject(event);
+  closeMenuTask(event);
+});
