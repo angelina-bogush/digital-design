@@ -18,16 +18,16 @@ export function createTask(data) {
     <button class="task__menu menu" data-dropdown="menu-2">
     <svg class="menu-image"><use xlink:href="#project-menu"></use></svg>
     <div class="project-dropdown task-dropdown" id='menu-2'>
-                    <ul class="dropdown__list">
-                        <li><a class="dropdown__link project-dropdown__link">Редактировать</a></li>
-                        <li><a class="dropdown__link project-dropdown__link"><span>Удалить</span></a></li>
+                    <ul class="dropdown__list task-dropdown">
+                        <li><a class="dropdown__link project-dropdown__link task-dropdown">Редактировать</a></li>
+                        <li><a class="dropdown__link project-dropdown__link task-dropdown"><span class="task-dropdown">Удалить</span></a></li>
                     </ul>
     </div>
     </button>
 </article>`;
 }
 export function closeMenuTask(event){
-  if(!event.target.classList.contains("task__menu") && !event.target.parentNode.classList.contains("task__menu")){
+  if(!event.target.classList.contains("task__menu") && !event.target.parentNode.classList.contains("task__menu") && !event.target.classList.contains("task-dropdown")){
     const dropdown = document.querySelector(".task-dropdown");
     const menuButton = document.querySelector(".task__menu");
     dropdown.classList.remove("dropdown_is_opened");

@@ -1,10 +1,10 @@
-import "../../fonts/font.scss";
-import "../scss/nav.scss";
-import "../scss/project.scss";
-import "../scss/task.scss";
-import "../scss/empty-projects.scss";
-import "@/icons/nav.svg";
-import "@/icons/project-menu.svg";
+import "@/fonts/font.scss";
+import "@/scss/nav.scss";
+import "@/scss/project.scss";
+import "@/scss/task.scss";
+import "@/scss/empty-projects.scss";
+import "@/images/icons/nav.svg";
+import "@/images/icons/project-menu.svg";
 import { createNav, toggleButton, toggleMenuNav, closeMenuNav } from "./nav";
 import { data } from "./data";
 import { createElement } from "./utils";

@@ -11,9 +11,9 @@ export function createNav(data) {
             <svg class="navigation__user-button"><use xlink:href="#nav"></use>
             </svg>
             <div class="dropdown nav-dropdown">
-                    <ul class="dropdown__list">
-                        <li><a class="dropdown__link">Профиль</a></li>
-                        <li><a class="dropdown__link">Выход</a></li>
+                    <ul class="dropdown__list nav-dropdown">
+                        <li><a class="dropdown__link nav-dropdown">Профиль</a></li>
+                        <li><a class="dropdown__link nav-dropdown">Выход</a></li>
                     </ul>
                 </div> </button>
         </div>
@@ -48,7 +48,8 @@ export function closeMenuNav(event) {
     !event.target.classList.contains("navigation__user") &&
     !event.target.classList.contains("navigation__user-container") &&
     !event.target.parentNode.classList.contains("navigation__user-container") &&
-    !event.target.parentNode.classList.contains("navigation__user-button")
+    !event.target.parentNode.classList.contains("navigation__user-button") &&
+    !event.target.classList.contains('nav-dropdown')
   ) {
     const userMenu = document.querySelector(".navigation__user");
     menuList.classList.remove("dropdown_is_opened");

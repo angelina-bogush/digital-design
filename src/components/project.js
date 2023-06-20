@@ -13,17 +13,17 @@ export function createProject(data) {
 </div>
 <button class="project__menu menu" data-dropdown="menu-1">
     <svg class="menu-image"><use xlink:href="#project-menu"></use></svg>
-    <div class="project-dropdown">
-                    <ul class="dropdown__list">
-                        <li><a class="dropdown__link project-dropdown__link">Редактировать</a></li>
-                        <li><a class="dropdown__link project-dropdown__link"><span>Удалить</span></a></li>
+    <div class="project-dropdown project-dropdown-opened">
+                    <ul class="dropdown__list project-dropdown-opened">
+                        <li><a class="dropdown__link project-dropdown__link project-dropdown-opened">Редактировать</a></li>
+                        <li><a class="dropdown__link project-dropdown__link project-dropdown-opened"><span class="project-dropdown-opened">Удалить</span></a></li>
                     </ul>
     </div>
     </button> 
 </article>`;
 }
 export function closeMenuProject(event){
-  if(!event.target.classList.contains("project__menu") && !event.target.parentNode.classList.contains("project__menu")){
+  if(!event.target.classList.contains("project__menu") && !event.target.parentNode.classList.contains("project__menu") && !event.target.classList.contains("project-dropdown-opened")){
     const dropdown = document.querySelector(".project-dropdown");
     const menuButton = document.querySelector(".project__menu");
     dropdown.classList.remove("dropdown_is_opened");

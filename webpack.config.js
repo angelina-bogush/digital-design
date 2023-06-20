@@ -1,6 +1,5 @@
 const path = require('path'); 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const  SpriteLoaderPlugin  =  require ( 'svg-sprite-loader/plugin' ) ;
  module.exports = {
@@ -76,13 +75,13 @@ const  SpriteLoaderPlugin  =  require ( 'svg-sprite-loader/plugin' ) ;
         new HtmlWebpackPlugin({
             template: './src/index.html' 
           }),
-          new CleanWebpackPlugin(),
           new MiniCssExtractPlugin(),
           new SpriteLoaderPlugin()
       ],
       resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src'),
+            "@": path.resolve(__dirname, './src'),
         },
+        extensions: ['.js', '.jsx', '.jpg', '.svg'],
     },
  }
