@@ -12,6 +12,7 @@ import { createProject, toggleMenuProject, closeMenuProject } from "./project";
 import { createTask, toggleMenuTask, closeMenuTask } from "./task";
 import { createEmptyProjects } from "./empty-project";
 
+function createPage(){
 const container = document.querySelector("#app");
 const projectContainer = document.querySelector(".project-container");
 const taskContainer = document.querySelector(".task-container");
@@ -31,3 +32,5 @@ document.addEventListener("click", (event) => {
   closeMenuProject(event);
   closeMenuTask(event);
 });
+}
+createPage()
