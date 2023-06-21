@@ -50,13 +50,12 @@ function createProjectFetch() {
     .then(checkAnswer)
     .then((res) => {
       console.log(res);
-      console.log(res._id);
     })
     .catch((err) => {
       console.log(err);
     });
 }
-createProjectFetch();
+
 
 //изменение проекта
 function changeProjectFetch() {
