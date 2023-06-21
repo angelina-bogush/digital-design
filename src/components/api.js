@@ -2,10 +2,8 @@ const user = {
     baseUrl:'http://45.12.239.156:8081/api',
     login: 'bogush.a',
     password: 'jc63fk',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGFmMjFjNzI4Nzk3MmNlODY3NmYxZSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNjg3Mjg0MzA0LCJleHAiOjE2ODczNzA3MDR9.nPbzCYBCyP0b6vinFZAV41_6RpI2mIRnXgJievJRTXE',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGFmMjFjNzI4Nzk3MmNlODY3NmYxZSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNjg3MzcxMzQzLCJleHAiOjE2ODc0NTc3NDN9.MciPORY6NhVTOdF5SHsZVz4Py-gR244dL0uAe5jZBeA',
 }
-document.getElementById("12").addEventListener('click', createTaskFetch)
-
 
 const checkAnswer = (res) => {
     if (res.ok) {
@@ -28,6 +26,8 @@ function token () {
   }),
 })
 .then(checkAnswer)
+.then((res) => {
+  console.log(res)})
 .catch((err) => {
     console.log(err)
 })
@@ -46,11 +46,13 @@ return fetch(`${user.baseUrl}/projects`, {
   }),
 })
 .then(checkAnswer)
-.then(res => console.log(res)) 
+.then((res) => {
+  console.log(res)
+console.log(res._id)}) 
 .catch((err) => {
     console.log(err)
 })}
-
+createProjectFetch()
 
 //изменение проекта
 function changeProjectFetch(){
@@ -157,7 +159,7 @@ function searchTaskFetch(){
         console.log(err)
     })}
 function deleteTaskFetch(){
-        return fetch(`${user.baseUrl}/tasks/6492078ada30960a23d890ee`, {
+        return fetch(`${user.baseUrl}/tasks/64930c2615cd6d1fa8ff5c86`, {
             method: 'DELETE',
            headers: {
             authorization: `Bearer ${user.token}`,
@@ -170,13 +172,208 @@ function deleteTaskFetch(){
             console.log(err)
         })}
 
-        // createProjectFetch()
-        // changeProjectFetch()
-        // searchProjectFetch()
-         // deleteProjectFetch()
+        //создание проекта xhr
+    function createProjectXml(){
+        const xhr = new XMLHttpRequest();
+        const data = {
+            name: "Project 1",
+            code: "#1"
+        }
+        xhr.open('POST', `${user.baseUrl}/projects`);
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+        xhr.setRequestHeader("Content-Type", "application/json")
+        xhr.onload = () => {
+            if(xhr.status>=400){
+                console.error(xhr.response)
+            } else {
+                console.log(xhr.response)
+            }
+        }
+        xhr.onerror = () => {
+            console.log(xhr.response)
+        }
+        xhr.send(JSON.stringify(data))
+    }
+
+    function changeProjectXml(){
+        const xhr = new XMLHttpRequest();
+        const id ='6493414015cd6d1fa8ff6565'
+        const data = {
+            name: "Project 1 changed!!!",
+            code: "#1",
+            _id: `${id}`
+        }
+        xhr.open('PUT', `${user.baseUrl}/projects`);
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+        xhr.setRequestHeader("Content-Type", "application/json")
+        xhr.onload = () => {
+            if(xhr.status>=400){
+                console.error(xhr.response)
+            } else {
+                console.log(xhr.response)
+            }
+        }
+        xhr.onerror = () => {
+            console.log(xhr.response)
+        }
+        xhr.send(JSON.stringify(data))
+    }
+    function searchProjectXml(){
+      const xhr = new XMLHttpRequest();
+      const id ='6493414015cd6d1fa8ff6565'
+      const data = {
+          name: "Project 1 changed!!!",
+          code: "#1",
+          _id: `${id}`
+      }
+      xhr.open('POST', `${user.baseUrl}/projects/search`);
+      xhr.responseType = 'json';
+      xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+      xhr.setRequestHeader("Content-Type", "application/json")
+      xhr.onload = () => {
+          if(xhr.status>=400){
+              console.error(xhr.response)
+          } else {
+              console.log(xhr.response)
+          }
+      }
+      xhr.onerror = () => {
+          console.log(xhr.response)
+      }
+      xhr.send(JSON.stringify(data))
+  }
+
+  function deleteProjectXml(){
+    const xhr = new XMLHttpRequest();
+    const id ='6493414015cd6d1fa8ff6565'
+    const data = {
+        name: "Project 1 changed!!!",
+        code: "#1",
+        _id: `${id}`
+    }
+    xhr.open('DELETE', `${user.baseUrl}/projects/${id}`);
+    xhr.responseType = 'json';
+    xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+    xhr.setRequestHeader("Content-Type", "application/json")
+    xhr.onload = () => {
+        if(xhr.status>=400){
+            console.error(xhr.response)
+        } else {
+            console.log(xhr.response)
+        }
+    }
+    xhr.onerror = () => {
+        console.log(xhr.response)
+    }
+    xhr.send()
+}
+
+function createTaskXml(){
+  const xhr = new XMLHttpRequest();
+  const data = {
+    name: "Task 1",
+    description: 'create task',
+    projectId: '6493414015cd6d1fa8ff6565'
+  }
+  xhr.open('POST', `${user.baseUrl}/tasks`);
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+  xhr.setRequestHeader("Content-Type", "application/json")
+  xhr.onload = () => {
+      if(xhr.status>=400){
+          console.error(xhr.response)
+      } else {
+          console.log(xhr.response)
+      }
+  }
+  xhr.onerror = () => {
+      console.log(xhr.response)
+  }
+  xhr.send(JSON.stringify(data))
+}
+
+
+function changeTaskXml(){
+  const xhr = new XMLHttpRequest();
+  const id ='6491f44ada30960a23d88ecb'
+  const data = {
+      name: "Task 1 changed!!!",
+      description: "#1",
+      _id: `${id}`
+  }
+  xhr.open('PUT', `${user.baseUrl}/tasks`);
+  xhr.responseType = 'json';
+  xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+  xhr.setRequestHeader("Content-Type", "application/json")
+  xhr.onload = () => {
+      if(xhr.status>=400){
+          console.error(xhr.response)
+      } else {
+          console.log(xhr.response)
+      }
+  }
+  xhr.onerror = () => {
+      console.log(xhr.response)
+  }
+  xhr.send(JSON.stringify(data))
+}
+
+function searchTaskXml(){
+const xhr = new XMLHttpRequest();
+const id ='6493414015cd6d1fa8ff6565'
+const data = {
+    name: "Project 1 changed!!!",
+    code: "#1",
+    _id: `${id}`
+}
+xhr.open('POST', `${user.baseUrl}/projects/search`);
+xhr.responseType = 'json';
+xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+xhr.setRequestHeader("Content-Type", "application/json")
+xhr.onload = () => {
+    if(xhr.status>=400){
+        console.error(xhr.response)
+    } else {
+        console.log(xhr.response)
+    }
+}
+xhr.onerror = () => {
+    console.log(xhr.response)
+}
+xhr.send(JSON.stringify(data))
+}
+
+function deleteTaskXml(){
+const xhr = new XMLHttpRequest();
+const id ='6493414015cd6d1fa8ff6565'
+xhr.open('DELETE', `${user.baseUrl}/projects/${id}`);
+xhr.responseType = 'json';
+xhr.setRequestHeader('authorization', `Bearer ${user.token}`);
+xhr.setRequestHeader("Content-Type", "application/json")
+xhr.onload = () => {
+  if(xhr.status>=400){
+      console.error(xhr.response)
+  } else {
+      console.log(xhr.response)
+  }
+}
+xhr.onerror = () => {
+  console.log(xhr.response)
+}
+xhr.send()
+}
+document.getElementById("2").addEventListener('click', createProjectFetch)
+        document.getElementById("14").addEventListener('click', createTaskFetch)
+        document.getElementById("17").addEventListener('click', searchTaskFetch)
+        document.getElementById("20").addEventListener('click', changeTaskFetch)
+        document.getElementById("23").addEventListener('click', deleteTaskFetch)
+        document.getElementById("1").addEventListener('click', createProjectXml)
+        document.getElementById("7").addEventListener('click', () => {
+            changeProjectXml(createProjectXml)})
         
-        // createTaskFetch()
-        // changeTaskFetch()
-        // searchTaskFetch()
-        // deleteTaskFetch()
-    
+         document.getElementById("10").addEventListener('click', deleteProjectXml)
+         document.getElementById("13").addEventListener('click', createTaskXml)
+         document.getElementById("19").addEventListener('click', changeTaskXml)
+         document.getElementById("22").addEventListener('click', deleteTaskXml)
