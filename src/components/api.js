@@ -3,7 +3,7 @@ const user = {
   login: "bogush.a",
   password: "jc63fk",
   token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGFmMjFjNzI4Nzk3MmNlODY3NmYxZSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNjg3MzcxMzQzLCJleHAiOjE2ODc0NTc3NDN9.MciPORY6NhVTOdF5SHsZVz4Py-gR244dL0uAe5jZBeA",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGFmMjFjNzI4Nzk3MmNlODY3NmYxZSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNjg3NDQ2Njg4LCJleHAiOjE2ODc1MzMwODh9.4cL2Nm4eAd1OhCo9JeZVMACFEMU3BJPpdrUtLQChAK4",
 };
 
 const checkAnswer = (res) => {
@@ -34,6 +34,8 @@ function token() {
       console.log(err);
     });
 }
+let taskId;
+let id;
 //Создание проекта
 function createProjectFetch() {
   return fetch(`${user.baseUrl}/projects`, {
@@ -50,6 +52,8 @@ function createProjectFetch() {
     .then(checkAnswer)
     .then((res) => {
       console.log(res);
+     id = res._id;
+      localStorage.setItem('id', id)
     })
     .catch((err) => {
       console.log(err);
@@ -68,7 +72,7 @@ function changeProjectFetch() {
     body: JSON.stringify({
       name: "Project 1 changed",
       code: "#1",
-      _id: "6491f115da30960a23d88e52",
+      _id: localStorage.getItem('id')
     }),
   })
     .then(checkAnswer)
@@ -96,7 +100,7 @@ function searchProjectFetch() {
 
 //удаление проекта
 function deleteProjectFetch() {
-  return fetch(`${user.baseUrl}/projects/6491f8f0da30960a23d89018`, {
+  return fetch(`${user.baseUrl}/projects/${localStorage.getItem('id')}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${user.token}`,
@@ -109,7 +113,7 @@ function deleteProjectFetch() {
       console.log(err);
     });
 }
-// deleteProjectFetch()
+
 
 //создание задачи
 function createTaskFetch() {
@@ -122,11 +126,14 @@ function createTaskFetch() {
     body: JSON.stringify({
       name: "Task 1",
       description: "create task",
-      projectId: "6491f3e1da30960a23d88e94",
+      projectId: localStorage.getItem('id'),
     }),
   })
     .then(checkAnswer)
-    .then((res) => console.log(res))
+    .then((res) => {
+      let taskId = res._id;
+      localStorage.setItem('taskId', taskId)
+      console.log(res)})
     .catch((err) => {
       console.log(err);
     });
@@ -143,7 +150,7 @@ function changeTaskFetch() {
     body: JSON.stringify({
       name: "Task 1 changed",
       description: "create task and send homework",
-      _id: "6491f44ada30960a23d88ecb",
+      _id: localStorage.getItem('taskId')
     }),
   })
     .then(checkAnswer)
@@ -168,7 +175,7 @@ function searchTaskFetch() {
     });
 }
 function deleteTaskFetch() {
-  return fetch(`${user.baseUrl}/tasks/64930c2615cd6d1fa8ff5c86`, {
+  return fetch(`${user.baseUrl}/tasks/${localStorage.getItem('taskId')}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${user.token}`,
@@ -198,6 +205,8 @@ function createProjectXml() {
       console.error(xhr.response);
     } else {
       console.log(xhr.response);
+       id = xhr.response._id;
+      localStorage.setItem('id', id)
     }
   };
   xhr.onerror = () => {
@@ -208,11 +217,10 @@ function createProjectXml() {
 
 function changeProjectXml() {
   const xhr = new XMLHttpRequest();
-  const id = "6493414015cd6d1fa8ff6565";
   const data = {
     name: "Project 1 changed!!!",
     code: "#1",
-    _id: `${id}`,
+    _id: `${localStorage.getItem('id')}`,
   };
   xhr.open("PUT", `${user.baseUrl}/projects`);
   xhr.responseType = "json";
@@ -232,12 +240,6 @@ function changeProjectXml() {
 }
 function searchProjectXml() {
   const xhr = new XMLHttpRequest();
-  const id = "6493414015cd6d1fa8ff6565";
-  const data = {
-    name: "Project 1 changed!!!",
-    code: "#1",
-    _id: `${id}`,
-  };
   xhr.open("POST", `${user.baseUrl}/projects/search`);
   xhr.responseType = "json";
   xhr.setRequestHeader("authorization", `Bearer ${user.token}`);
@@ -252,13 +254,12 @@ function searchProjectXml() {
   xhr.onerror = () => {
     console.log(xhr.response);
   };
-  xhr.send(JSON.stringify(data));
+  xhr.send();
 }
 
 function deleteProjectXml() {
   const xhr = new XMLHttpRequest();
-  const id = "6493414015cd6d1fa8ff6565";
-  xhr.open("DELETE", `${user.baseUrl}/projects/${id}`);
+  xhr.open("DELETE", `${user.baseUrl}/projects/${localStorage.getItem('id')}`);
   xhr.responseType = "json";
   xhr.setRequestHeader("authorization", `Bearer ${user.token}`);
   xhr.setRequestHeader("Content-Type", "application/json");
@@ -280,7 +281,7 @@ function createTaskXml() {
   const data = {
     name: "Task 1",
     description: "create task",
-    projectId: "6493414015cd6d1fa8ff6565",
+    projectId: localStorage.getItem('id'),
   };
   xhr.open("POST", `${user.baseUrl}/tasks`);
   xhr.responseType = "json";
@@ -291,6 +292,8 @@ function createTaskXml() {
       console.error(xhr.response);
     } else {
       console.log(xhr.response);
+     taskId = xhr.response._id;
+     localStorage.setItem('taskId', taskId)
     }
   };
   xhr.onerror = () => {
@@ -301,11 +304,10 @@ function createTaskXml() {
 
 function changeTaskXml() {
   const xhr = new XMLHttpRequest();
-  const id = "6491f44ada30960a23d88ecb";
   const data = {
     name: "Task 1 changed!!!",
     description: "#1",
-    _id: `${id}`,
+    _id: `${localStorage.getItem('taskId')}`,
   };
   xhr.open("PUT", `${user.baseUrl}/tasks`);
   xhr.responseType = "json";
@@ -326,12 +328,6 @@ function changeTaskXml() {
 
 function searchTaskXml() {
   const xhr = new XMLHttpRequest();
-  const id = "6493414015cd6d1fa8ff6565";
-  const data = {
-    name: "Project 1 changed!!!",
-    code: "#1",
-    _id: `${id}`,
-  };
   xhr.open("POST", `${user.baseUrl}/projects/search`);
   xhr.responseType = "json";
   xhr.setRequestHeader("authorization", `Bearer ${user.token}`);
@@ -346,13 +342,12 @@ function searchTaskXml() {
   xhr.onerror = () => {
     console.log(xhr.response);
   };
-  xhr.send(JSON.stringify(data));
+  xhr.send();
 }
 
 function deleteTaskXml() {
   const xhr = new XMLHttpRequest();
-  const id = "6493414015cd6d1fa8ff6565";
-  xhr.open("DELETE", `${user.baseUrl}/projects/${id}`);
+  xhr.open("DELETE", `${user.baseUrl}/tasks/${localStorage.getItem('taskId')}`);
   xhr.responseType = "json";
   xhr.setRequestHeader("authorization", `Bearer ${user.token}`);
   xhr.setRequestHeader("Content-Type", "application/json");
@@ -383,17 +378,18 @@ function createProjectAxios() {
     )
     .then((res) => {
       console.log(res.data);
+      id = res.data._id;
+      localStorage.setItem('id', id)
     })
     .catch((err) => {
       console.log(err);
     });
 }
 function changeProjectAxios() {
-  const url = "649356f215cd6d1fa8ff6cab";
   axios
     .put(
       `${user.baseUrl}/projects`,
-      { name: "Project 2", description: "#2", _id: `${url}` },
+      { name: "Project 2", description: "#2", _id: `${localStorage.getItem('id')}` },
       {
         headers: {
           authorization: `Bearer ${user.token}`,
@@ -409,11 +405,10 @@ function changeProjectAxios() {
     });
 }
 function searchProjectAxios() {
-  const url = "649356f215cd6d1fa8ff6cab";
   axios
     .post(
       `${user.baseUrl}/projects/search`,
-      { name: "Project 2", Code: "#1", _id: `${url}` },
+      { name: "Project 2", Code: "#1", _id: `${localStorage.getItem('id')}` },
       {
         headers: {
           authorization: `Bearer ${user.token}`,
@@ -430,9 +425,8 @@ function searchProjectAxios() {
 }
 
 function deleteProjectAxios() {
-  const url = "649356f215cd6d1fa8ff6cab";
   axios
-    .delete(`${user.baseUrl}/projects/${url}`, {
+    .delete(`${user.baseUrl}/projects/${localStorage.getItem('id')}`, {
       headers: {
         authorization: `Bearer ${user.token}`,
         "Content-Type": "application/json",
@@ -447,11 +441,10 @@ function deleteProjectAxios() {
 }
 
 function createTaskAxios() {
-  const projectId = "649356f215cd6d1fa8ff6cab";
   axios
     .post(
       `${user.baseUrl}/tasks`,
-      { name: "Task 1", description: "#1", projectId: `${projectId}` },
+      { name: "Task 1", description: "#1", projectId: `${localStorage.getItem('id')}` },
       {
         headers: {
           authorization: `Bearer ${user.token}`,
@@ -461,18 +454,18 @@ function createTaskAxios() {
     )
     .then((res) => {
       console.log(res.data);
+      taskId = res.data._id;
+      localStorage.setItem('taskId', taskId)
     })
     .catch((err) => {
       console.log(err);
     });
 }
 function changeTaskAxios() {
-  const projectId = "649356f215cd6d1fa8ff6cab";
-  const id = "649359b715cd6d1fa8ff6e6c";
   axios
     .put(
       `${user.baseUrl}/tasks`,
-      { name: "Task 1111111", description: "#1", _id: `${id}` },
+      { name: "Task 1111111", description: "#1", _id: `${localStorage.getItem('taskId')}` },
       {
         headers: {
           authorization: `Bearer ${user.token}`,
@@ -488,11 +481,10 @@ function changeTaskAxios() {
     });
 }
 function searchTaskAxios() {
-  const id = "649359b715cd6d1fa8ff6e6c";
   axios
     .post(
       `${user.baseUrl}/tasks/search`,
-      { name: "Task 1111111", code: "#1", _id: `${id}` },
+      { name: "Task 1111111", code: "#1", _id: `${localStorage.getItem('taskId')}` },
       {
         headers: {
           authorization: `Bearer ${user.token}`,
@@ -508,9 +500,8 @@ function searchTaskAxios() {
     });
 }
 function deleteTaskAxios() {
-  const id = "649359b715cd6d1fa8ff6e6c";
   axios
-    .delete(`${user.baseUrl}/tasks/${id}`, {
+    .delete(`${user.baseUrl}/tasks/${localStorage.getItem('taskId')}`, {
       headers: {
         authorization: `Bearer ${user.token}`,
         "Content-Type": "application/json",
