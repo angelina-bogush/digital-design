@@ -3,7 +3,7 @@ const user = {
   login: "bogush.a",
   password: "jc63fk",
   token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OGFmMjFjNzI4Nzk3MmNlODY3NmYxZSIsInJvbGVzIjpbIlVTRVIiXSwiaWF0IjoxNjg3NDQ2Njg4LCJleHAiOjE2ODc1MzMwODh9.4cL2Nm4eAd1OhCo9JeZVMACFEMU3BJPpdrUtLQChAK4",
+    localStorage.getItem('token')
 };
 
 const checkAnswer = (res) => {
@@ -28,7 +28,8 @@ function token() {
   })
     .then(checkAnswer)
     .then((res) => {
-      console.log(res);
+      let token = res.token;
+      localStorage.setItem('token', token)
     })
     .catch((err) => {
       console.log(err);
